@@ -14,6 +14,7 @@ const register = () => {
   let name = document.getElementById('name').value;
   let email = document.getElementById('email').value;
   let password = document.getElementById('password').value;
+  let cpassword = document.getElementById('cpassword').value;
   if (name === '' || email === '' || password === '') {
     alert('Please fill in all fields!');
   } else {
@@ -24,19 +25,23 @@ const register = () => {
     if (find) {
       alert('Email already exists');
     } else {
-      let obj = {
-        id: Math.floor(Math.random() * 100),
-        name: name,
-        email: email,
-        password: password,
-        role: 'user'
-      };
-      data.push(obj);
-      localStorage.setItem('register', JSON.stringify(data));
-      document.getElementById('name').value = '';
-      document.getElementById('email').value = '';
-      document.getElementById('password').value = '';
-      window.location.href = 'signin.html';
+      if(password === cpassword){
+        let obj = {
+          id: Math.floor(Math.random() * 100),
+          name: name,
+          email: email,
+          password: password,
+          role: 'user'
+        };
+        data.push(obj);
+        localStorage.setItem('register', JSON.stringify(data));
+        document.getElementById('name').value = '';
+        document.getElementById('email').value = '';
+        document.getElementById('password').value = '';
+        window.location.href = 'signin.html';
+      }else{
+        alert("Passwords don't match"); 
+      }
     }
   }
 };
